@@ -45,18 +45,16 @@ object Utils {
             "ь" to "",
             "э" to "e",
             "ю" to "yu",
-            "я" to "ya",
+            "я" to "ya"
         )
 
         if (divider.isNotEmpty()) transliterationMap[" "] = divider
-
-        val localeRu = Locale("ru")
 
         return transliterationMap.entries
                 .fold(payload) {
                     acc, (from, to) ->
                     acc.replace(from, to)
-                            .replace(from.capitalize(localeRu), to.capitalize(localeRu))
+                            .replace(from.capitalize(), to.capitalize())
                 }
     }
 

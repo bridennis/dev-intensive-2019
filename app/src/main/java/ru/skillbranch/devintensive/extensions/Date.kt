@@ -39,8 +39,8 @@ enum class TimeUnits {
 
     private fun pluralForm(value: Int): String {
         val plurals = mapOf(
-                SECOND.name to listOf("секунд", "секунда", "секунды"),
-                MINUTE.name to listOf("минут", "минута", "минуты"),
+                SECOND.name to listOf("секунд", "секунду", "секунды"),
+                MINUTE.name to listOf("минут", "минуту", "минуты"),
                 HOUR.name to listOf("часов", "час", "часа"),
                 DAY.name to listOf("дней", "день", "дня")
         )

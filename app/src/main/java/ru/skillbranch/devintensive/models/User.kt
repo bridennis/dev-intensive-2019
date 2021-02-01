@@ -25,7 +25,7 @@ class User(
     }
 
     class Builder {
-        private var id: String = "0"
+        private var id: String = ""
 
         var firstName: String? = null
             private set
@@ -33,7 +33,8 @@ class User(
         var lastName: String? = null
             private set
 
-        private var avatar: String? = null
+        var avatar: String? = null
+            private set
 
         var rating: Int = 0
             private set

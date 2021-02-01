@@ -25,28 +25,21 @@ class User(
     }
 
     class Builder {
-        private var id: String = ""
+        var id: String = ""
 
         var firstName: String? = null
-            private set
 
         var lastName: String? = null
-            private set
 
         var avatar: String? = null
-            private set
 
         var rating: Int = 0
-            private set
 
         var respect: Int = 0
-            private set
 
         var lastVisit: Date? = Date()
-            private set
 
         var isOnline: Boolean = false
-            private set
 
         fun id(id: String) = apply { this.id = id }
 

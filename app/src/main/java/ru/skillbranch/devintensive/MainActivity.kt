@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         messageEt = et_message
         sendBtn = iv_send
 
-        val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
-        val question = savedInstanceState?.getString("QUESTION") ?: Bender.Question.NAME.name
+        val status = savedInstanceState?.getString("STATUS") ?: "NORMAL"
+        val question = savedInstanceState?.getString("QUESTION") ?: "NAME"
         benderObj = Bender(Bender.Status.valueOf(status), Bender.Question.valueOf(question))
 
         val (r, g, b) = benderObj.status.color

@@ -38,7 +38,7 @@ class Bender (var status: Status = Status.NORMAL, var question: Question = Quest
         }
     }
 
-    enum class Status (var color: Triple<Int, Int, Int>) {
+    enum class Status(var color: Triple<Int, Int, Int>) {
         NORMAL(Triple(255, 255, 255)),
         WARNING(Triple(255, 120, 0)),
         DANGER(Triple(255, 60, 60)),
@@ -53,7 +53,7 @@ class Bender (var status: Status = Status.NORMAL, var question: Question = Quest
         }
     }
 
-    enum class Question (val question: String, val answers: List<String>) {
+    enum class Question(val question: String, val answers: List<String>) {
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun nextQuestion(): Question = PROFESSION
         },

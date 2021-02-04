@@ -1,14 +1,17 @@
 package ru.skillbranch.devintensive
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -41,6 +44,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val message = savedInstanceState?.getString("MESSAGE") ?: ""
         messageEt.setText(message)
+
+        messageEt.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                hideKeyboard()
+                sendBtn.callOnClick()
+            }
+            false
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -51,6 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         outState.putString("MESSAGE", messageEt.toString())
     }
 
+    @SuppressLint("DefaultLocale")
     override fun onClick(v: View?) {
         if (v?.id == R.id.iv_send) {
             val (phrase, color) = benderObj.listenAnswer(messageEt.text.toString().toLowerCase())

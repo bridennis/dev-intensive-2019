@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onSaveInstanceState(outState)
 
         outState.putString("STATUS", benderObj.status.name)
-        outState.putString("QUESTION", benderObj.question.question)
+        outState.putString("QUESTION", benderObj.question.name)
         outState.putString("MESSAGE", messageEt.toString())
     }
 

@@ -66,14 +66,14 @@ class Bender (var status: Status = Status.NORMAL, var question: Question = Quest
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun nextQuestion(): Question = PROFESSION
             override fun validateAnswerFormat(answer: String) {
-                if (answer.isNotEmpty() && answer[0].toUpperCase() != answer[0])
+                if (answer.isNotBlank() && !answer[0].isUpperCase())
                     throw NotValidAnswerFormatException("Имя должно начинаться с заглавной буквы")
             }
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun nextQuestion(): Question = MATERIAL
             override fun validateAnswerFormat(answer: String) {
-                if (answer[0].toLowerCase() != answer[0])
+                if (answer.isNotBlank() && answer[0].isUpperCase())
                     throw NotValidAnswerFormatException(
                             "Профессия должна начинаться со строчной буквы"
                     )

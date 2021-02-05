@@ -66,7 +66,7 @@ class Bender (var status: Status = Status.NORMAL, var question: Question = Quest
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun nextQuestion(): Question = PROFESSION
             override fun validateAnswerFormat(answer: String) {
-                if (answer[0].toUpperCase() != answer[0])
+                if (answer.isNotEmpty() && answer[0].toUpperCase() != answer[0])
                     throw NotValidAnswerFormatException("Имя должно начинаться с заглавной буквы")
             }
         },

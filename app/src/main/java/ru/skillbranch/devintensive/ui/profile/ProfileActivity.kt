@@ -4,6 +4,8 @@ import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -74,7 +76,13 @@ class ProfileActivity : AppCompatActivity() {
 
 
         btn_edit.setOnClickListener {
-            if (isEditMode) saveProfileInfo()
+            if (isEditMode) {
+                if (!gitHubUrlIsValid(wr_repository.editText?.text.toString())) {
+                    et_repository.setText("")
+                }
+
+                saveProfileInfo()
+            }
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
         }
@@ -82,6 +90,28 @@ class ProfileActivity : AppCompatActivity() {
         btn_switch_theme.setOnClickListener {
             viewModel.switchTheme()
         }
+
+        wr_repository.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (p0.toString().isNotEmpty() && !gitHubUrlIsValid(p0.toString())) {
+                    wr_repository.error = "Невалидный адрес репозитория"
+                } else {
+                    wr_repository.error = ""
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+        })
+    }
+
+    private fun gitHubUrlIsValid(url: String): Boolean {
+        return !(!url.matches(Regex("^https://github.com/[^/]+$"))
+                && !url.matches(Regex("^www.github.com/[^/]+$"))
+                && !url.matches(Regex("^https://www.github.com/[^/]+$")))
     }
 
     private fun showCurrentMode(isEdit: Boolean) {

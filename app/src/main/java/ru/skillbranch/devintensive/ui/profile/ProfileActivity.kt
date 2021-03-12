@@ -109,9 +109,9 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun gitHubUrlIsValid(url: String): Boolean {
-        return !(!url.matches(Regex("^https://github.com/[^/]+$"))
-                && !url.matches(Regex("^www.github.com/[^/]+$"))
-                && !url.matches(Regex("^https://www.github.com/[^/]+$")))
+        return !(!url.matches(Regex("^https://github\\.com/[^/]+$"))
+                && !url.matches(Regex("^www\\.github\\.com/[^/]+$"))
+                && !url.matches(Regex("^https://www\\.github\\.com/[^/]+$")))
     }
 
     private fun showCurrentMode(isEdit: Boolean) {
